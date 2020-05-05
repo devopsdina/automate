@@ -319,18 +319,18 @@ var ComplianceRepDate = Mapping{
                 },
                 "truncated_results": {
                   "properties": {
-										"failed": {
-											"type": "integer"
-										},
-										"skipped": {
-											"type": "integer"
-										},
-										"passed": {
-											"type": "integer"
-										}
-									},
-									"type": "object"
-								}
+                    "failed": {
+                      "type": "integer"
+                    },
+                    "skipped": {
+                      "type": "integer"
+                    },
+                    "passed": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
               },
               "type": "nested"
             },
