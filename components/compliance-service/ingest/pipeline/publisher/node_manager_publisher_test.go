@@ -78,6 +78,7 @@ func TestGatherInfoForNode(t *testing.T) {
 			{Key: "chef-tag", Value: "database"},
 			{Key: "environment", Value: "test-env"},
 		},
+		ManagerType: "chef",
 	}, nodeMetadata)
 }
 
@@ -96,7 +97,7 @@ func TestGatherInfoForNodeDoesNotCollectProjectsDataIfScanJob(t *testing.T) {
 			Platform:         &inspec.Platform{Name: "ubuntu", Release: "16.04"},
 			ChefTags:         []string{"application", "database"},
 			OrganizationName: "test-org",
-			SourceFqdn:       "chef-server-2",
+			SourceFqdn:       "",
 			Roles:            []string{"my-cool-role"},
 			EndTime:          nowTimeString,
 			SourceId:         "i-0aee75f0b4b0d9f22",
@@ -132,6 +133,7 @@ func TestGatherInfoForNodeDoesNotCollectProjectsDataIfScanJob(t *testing.T) {
 			{Key: "chef-tag", Value: "application"},
 			{Key: "chef-tag", Value: "database"},
 		},
+		ManagerType: "",
 	}, nodeMetadata)
 }
 
