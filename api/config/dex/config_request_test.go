@@ -370,6 +370,23 @@ func TestValidate(t *testing.T) {
 		})
 	})
 
+	t.Run("allowed_groups (saml)", func(t *testing.T) {
+		valid := map[string][]string{
+			"one group":  {"admins"},
+			"two groups": {"admins", "ops"},
+			"no groups":  {}, // should this warn?
+		}
+		for k, v := range valid {
+			t.Run(k, func(t *testing.T) {
+				cfg := dex.DefaultConfigRequest()
+				saml := completeSAML()
+				saml.AllowedGroups = &dex.ConfigRequest_V1_ListStringValue{Values: v}
+				cfg.V1.Sys.Connectors = &dex.ConfigRequest_V1_Connectors{Saml: saml}
+				assert.NoError(t, cfg.Validate())
+			})
+		}
+	})
+
 	t.Run("ca_contents", func(t *testing.T) {
 		tests := map[string]func(certs string) *dex.ConfigRequest_V1_Connectors{
 			"saml": func(certs string) *dex.ConfigRequest_V1_Connectors {
