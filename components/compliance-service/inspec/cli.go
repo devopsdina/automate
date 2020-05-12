@@ -17,6 +17,14 @@ import (
 // BackendCache used for configuring inspec exec command, passed in via config flag
 var BackendCache bool
 
+// ResultMessageLimit used for configuring inspec exec command, passed in via config flag
+var ResultMessageLimit int
+
+// ControlResultsLimit used for configuring inspec exec command, passed in via config flag
+var ControlResultsLimit int
+
+// TODO: we need this???? ^^^^^^^^
+
 // TmpDir is used for setting the location of the /tmp dir to be used by inspec for caching
 var TmpDir string
 
@@ -58,6 +66,8 @@ func Scan(paths []string, target *TargetConfig, timeout time.Duration, env map[s
 	// Using "json-automate" as it provides better inherited profiles report
 	target.Reporter["json-automate"] = Reporter{}
 	target.BackendCache = BackendCache
+	target.ResultIncludeBacktrace = false
+	target.ResultMessageLimit = ResultMessageLimit
 
 	env["HOME"] = os.Getenv("HOME")
 
