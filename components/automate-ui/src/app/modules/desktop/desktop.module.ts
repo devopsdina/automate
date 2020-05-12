@@ -16,7 +16,6 @@ import {
 import { InsightComponent } from './insight/insight.component';
 import { DesktopRoutingModule } from './desktop-routing.module';
 
-
 @NgModule({
   imports: [
     CommonModule,
